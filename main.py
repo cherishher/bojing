@@ -17,6 +17,7 @@ from mod.host.handler import HostHandler
 from mod.contact.handler import ContactHandler
 from mod.publish.handler import PublishHandler
 from mod.show.handler import ShowHandler
+from mod.login.handler import LoginHandler
 
 define("port", default= 7000, help= "run on the given port", type=int)
 
@@ -26,7 +27,8 @@ class Application(tornado.web.Application):
 			(r'/index',HostHandler),
 			(r'/contact',ContactHandler),
 			(r'/publish',PublishHandler),
-			(r'/show',ShowHandler)
+			(r'/show',ShowHandler),
+			(r'/login',LoginHandler)
 		]
 
 		settings = dict (

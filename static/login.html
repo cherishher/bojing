@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>登陆</title>
+	</head>
+	<body>
+		<input type="text" id="number" name="studentnum" placeholder="一卡通账号">
+		<input type="password" id="password" name="password" placeholder="统一身份认证密码">
+		<button id="login" style="position:absolate;border-radius:8px">登录</button>
+	</body>
+	<script type="text/javascript">
+  $("#login").click(function(){
+  $.post("/login",
+  {
+    studentnum:$("#number").val(),
+    password:$("#password").val()
+  },
+  function(data,status){
+    var retdata = JSON.parse(data);
+    if(retdata['code'] == 200){
+        window.location.href="/publish";
+    }
+    else{
+      alert(retdata['text']);
+    }
+  });
+});
+	</script>
+</html>

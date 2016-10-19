@@ -5,7 +5,7 @@
 import tornado.web
 import tornado.web
 import tornado.gen
-from ..db.contact import Message
+from ..db.publish import News
 
 class HostHandler(tornado.web.RequestHandler):
 	@property
@@ -14,8 +14,7 @@ class HostHandler(tornado.web.RequestHandler):
 
 	def get(self):
 		try:
-			data = self.db.query(Message).all()
-			self.render('index3.html',data=data)
+			data = self.db.query(News).all()
+			self.render('../static/index3.html',data=data)
 		except Exception,e:
 			print str(e)
-		self.db.finish()

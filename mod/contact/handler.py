@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 # @Date    : 2016/10/1  20:51
 # @Author  : 490949611@qq.com
+import json
 
 import tornado.web
 from ..db.contact import Message
+import traceback
 
 class ContactHandler(tornado.web.RequestHandler):
 
@@ -37,7 +39,8 @@ class ContactHandler(tornado.web.RequestHandler):
 				self.db.commit()
 				retjson['text'] = u'提交成功！'
 			except Exception,e:
+				traceback.print_exc()
 				retjson['code'] = 500
 				retjson['text'] = u'系统故障请联系系统开发人员'
-				print str(e)
+		self.write(json.dumps(retjson))
 
